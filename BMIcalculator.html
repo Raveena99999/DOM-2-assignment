@@ -1,0 +1,59 @@
+<!-- Create an application which calculates BMI (Body Mass Index)
+Your app should have 2 input boxes
+Take weight in kgs from user
+Take height in meters from user
+Based on entered height and weight calculate BMI of that person
+Here is the formula for manually calculating BMI  BMI = (weight) / (height * height)
+From the obtained BMI result, display whether the person is
+UnderWeight - bmi <= 18.4
+Normal Weight - bmi >= 18.5 && bmi <= 24.9
+Overweight - bmi >= 25 && bmi <= 29.9
+Obese - bmi >= 30
+Hint: use If conditions -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI calculator</title>
+</head>
+<body>
+    <h1>Check your BMI</h1>
+    <h2>Enter your weight and height below to check your BMI results</h2>
+    <h2>Put your weight in here (KG)</h2>
+    <input type="text"  id="wgt">
+    <h2>And your height in here (CM)</h2>
+    <input type="text"  id="ht">
+    <button onclick="calc()">Calculate BMI</button>
+    <h2 id="display">display</h2>
+    </body>
+
+    <script>
+        
+        function calc(){
+            let weight = (document.getElementById("wgt").value);
+        let height = (document.getElementById("ht").value)/100
+            let display=document.getElementById("display")
+            let BMI= display.innerText= (weight)/ (height*height)
+
+            if(BMI<=18.4)
+             display.innerText="Your BMI is " + BMI + " which means you are underweight"
+            else if(BMI>=18.5&& BMI<=24.9){
+                display.innerText="Your BMI is " + BMI + " which means you are normal weight"
+               }
+               else if(BMI>=25&& BMI<=29.9){
+                display.innerText="Your BMI is " + BMI + " which means you are overtweight"
+               }
+               else{
+                display.innerText="Your BMI is " + BMI + " which means you are Obese"
+
+               }
+        }
+         
+
+
+
+    </script>
+</html>
+
