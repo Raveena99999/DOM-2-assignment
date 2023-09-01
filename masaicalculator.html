@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>massaicalculator</title>
+   
+</head>
+<body >
+    <h2 id="display">show here</h2>
+    <div class="divbutton">
+    <button>1</button>
+    <button>2</button>
+    <button>3</button>
+    <br>
+    <button>4</button>
+    <button>5</button>
+    <button>6</button>
+    <br>
+    <button>7</button>
+    <button>8</button>
+    <button>9</button>
+    <br>
+    <button>0</button>
+</div>
+
+<div class="divoperator">
+    <button>+</button>
+    <button>-</button>
+    <button>*</button>
+    
+    <button>/</button>
+</div>
+
+<button id="equal">=</button>
+<button id="reset">reset</button>
+</body>
+
+<script>
+    let display = document.getElementById("display");
+    let button = document.querySelectorAll(".divbutton>button")
+    let operatorbutton = document.querySelectorAll(".divoperator>button")
+    let equal = document.getElementById("equal")
+    let reset = document.getElementById("reset")
+    let firstnumber=""
+    let secondnumber=""
+    let operator=""
+    let flag=true
+
+    for(let i=0;i<button.length;i++){
+        button[i].addEventListener("click",function(){
+            if(flag==true){
+        firstnumber+=button[i].innerText
+        display.innerText=firstnumber
+        
+       }
+       else{
+        secondnumber+=button[i].innerText
+        display.innerText=secondnumber
+       }
+        })
+       
+    }
+
+    for(let i=0;i<operatorbutton.length;i++){
+        operatorbutton[i].addEventListener('click', function () {
+            
+            operator=operatorbutton[i].innerText
+            display.innerText=operator
+            flag=false
+        })
+    }
+
+    // equal.addEventListener("click",fun)
+    // function fun(){
+    //    display.innerText=eval(firstnumber+operator+secondnumber) 
+    // }
+    equal.addEventListener("click",function(){
+        display.innerText=fun(firstnumber,operator,secondnumber)
+    })
+    function fun(firstnumber,operator,secondnumber){
+        if (operator=="+"){
+            return Number(firstnumber) + Number(secondnumber)
+        }
+        else  if (operator == "-"){
+            return Number(firstnumber) - Number(secondnumber)
+
+            }else   if (operator == "*"){
+                return Number(firstnumber) * Number(secondnumber)
+
+                }    else     if (operator == "/"){
+                    return Number(firstnumber) / Number(secondnumber)
+
+                }
+                
+    }
+  reset.addEventListener("click",function(){
+    display.innerText=" "
+  })
+
+
+</script>
+</html>

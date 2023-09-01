@@ -1,0 +1,51 @@
+<!-- Create the file leaderboard.html so that it looks similar to the image below
+Functionality
+By clicking on any number it shows up in the score box joined to any previous numbers already present (Eg: To enter a score of 423 you have to press 4 2 3)
+Once the button ENTER is pressed the score gets compared with the MIN and MAX boxes, if the current score is less than the MIN score it gets updated with the current score, if the current score is greater than the MAX score it gets updated with the current score
+The SCORE box will be reset with empty value -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leaderboard</title>
+
+</head>
+<body>
+    <h2 id="display">show score</h2>
+    <h2 id="dis">display</h2>
+    <div>
+        
+   </div>
+    <div class="container">
+          <button>1</button>
+          <button>2</button>
+          <button>3</button>
+          <br>
+          <button>4</button>
+          <button>5</button>
+          <button>6</button>
+          <br>
+          <button>7</button>
+          <button>8</button>
+          <button>9</button>
+          <br>
+          <button>0</button>
+    </div>
+
+    <script>
+        for(let i=0;i<btn.length;i++){
+            btn[i].addEventListener("click",function(){
+             let display = document.getElementById("display").innerText
+             let btn=document.querySelectorAll(".container>button")
+
+             btn[i]=display
+            })
+        }
+
+        #display>div.style.border ="2px solid black"
+        h2.style.height = "20px"
+    </script>
+    
+</body>
+</html>
