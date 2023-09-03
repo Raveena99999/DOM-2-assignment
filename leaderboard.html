@@ -8,44 +8,189 @@ The SCORE box will be reset with empty value -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Leaderboard</title>
+    <title>leaderboard</title>
+    <style>
+        #main{
+            /* border: 2px solid blue; */
+            height: 100px;
+            width: 350px;
+            margin: auto;
+            display: flex;
+            justify-content: space-between;
 
-</head>
-<body>
-    <h2 id="display">show score</h2>
-    <h2 id="dis">display</h2>
-    <div>
-        
-   </div>
-    <div class="container">
-          <button>1</button>
-          <button>2</button>
-          <button>3</button>
-          <br>
-          <button>4</button>
-          <button>5</button>
-          <button>6</button>
-          <br>
-          <button>7</button>
-          <button>8</button>
-          <button>9</button>
-          <br>
-          <button>0</button>
-    </div>
+        }
+        #minbox,#maxbox{
 
-    <script>
-        for(let i=0;i<btn.length;i++){
-            btn[i].addEventListener("click",function(){
-             let display = document.getElementById("display").innerText
-             let btn=document.querySelectorAll(".container>button")
+            height: 100px;
+            width: 120px;
+        }
+       
+        #minbox>div:nth-child(1){
+            /* border: 2px solid red; */
+            border: 2px solid black;
 
-             btn[i]=display
-            })
+          height: 70px;
+          width: 120px;
+          display: flex;
+            justify-content: center;
+          align-items: center;
+          background-color: red;
+        }
+        #maxbox>div:nth-child(1){
+            /* border: 2px solid red; */
+            border: 2px solid black;
+
+          height: 70px;
+          width: 120px;
+          display: flex;
+            justify-content: center;
+
+            align-items: center;
+            background-color: green;
         }
 
-        #display>div.style.border ="2px solid black"
-        h2.style.height = "20px"
-    </script>
-    
+        #minbox>div:nth-child(2),#maxbox>div:nth-child(2){
+          /* border: 2px solid red; */
+          height: 20px;
+          width: 120px;
+          text-align: center;
+           
+
+
+        }
+        #main1{
+            /* border: 2px solid greenyellow ; */
+            height: 80px;
+            width: 250px;
+            margin: auto;
+            margin-top: 30px;
+        }
+        #main1>div:nth-child(1){
+            /* border: 2px solid black; */
+            height: 20px;
+            width: 250px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+        }
+        #main1>div:nth-child(2){
+            border: 2px solid black;
+            height: 50px;
+            width: 250px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #main2{
+            /* border: 2px solid black; */
+            height: 250px;
+            width: 250px;
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            gap: 10px;
+            margin: auto;
+            margin-top: 30px;
+        }
+        #main2>div{
+            border: 2px solid black;
+
+            height: 50px;
+            display: flex;
+            justify-content: center;
+
+            align-items: center;
+
+        }
+        #enter{
+            border: 2px solid black;
+            width: 250px;
+            height: 70px;
+            margin: auto;
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            background-color: black;
+        }
+        #display{
+            background-color: grey;
+        }
+        .green{
+            background-color: rgb(84, 146, 84);
+        }
+        .orange{
+            background-color: orange;
+        }
+        #purple{
+            background-color: rgb(172, 91, 172);
+        }
+
+    </style>
+</head>
+<body>
+    <div id="main">
+        <div id="minbox">
+            <div id="min">10</div>
+            <div >MIN</div>
+        </div >
+        <div id="maxbox">
+            <div id="max">20</div>
+            <div >MAX</div>
+        </div>
+    </div>
+
+    <div id="main1">
+        <div>SCORE</div>
+        <div id="display"></div>
+    </div>
+
+    <div id="main2">
+        <div class="green">1</div>
+        <div class="orange">2</div>
+        <div class="green">3</div>
+        <div class="orange">4</div>
+        <div class="orange">5</div>
+        <div class="orange">6</div>
+        <div class="green">7</div>
+        <div class="orange">8</div>
+        <div class="green">9</div>
+        <div id="blank" style="border: none;"></div>
+        <div id="purple">0</div>
+    </div>
+
+    <div id="enter">ENTER</div>
 </body>
+
+<script>
+    let minimum=document.getElementById("min")
+    let maximum=document.getElementById("max")
+    let display=document.getElementById("display")
+    let number= document.querySelectorAll("#main2>div")
+    let enter=document.getElementById("enter")
+    let digit=""
+    for(let i=0;i<number.length;i++){
+        number[i].addEventListener("click",function(){
+           digit += number[i].innerText
+            display.innerText=digit
+        })
+    }
+
+    enter.addEventListener("click",function(){
+        console.log("bnjj")
+        if(+digit<minimum.innerText){
+            minimum.innerText=digit
+            digit=""
+        }
+        else if(+digit>maximum.innerText){
+            maximum.innerText=digit
+            digit=""
+        }
+       else if(+digit>minimum.innerText && +digit<maximum.innerText){
+        display.innerText="Entered score is not MIN nor MAX"
+            digit=""
+        }
+    })
+</script>
 </html>

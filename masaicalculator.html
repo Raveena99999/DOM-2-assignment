@@ -1,103 +1,113 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>massaicalculator</title>
-   
-</head>
-<body >
-    <h2 id="display">show here</h2>
-    <div class="divbutton">
-    <button>1</button>
-    <button>2</button>
-    <button>3</button>
-    <br>
-    <button>4</button>
-    <button>5</button>
-    <button>6</button>
-    <br>
-    <button>7</button>
-    <button>8</button>
-    <button>9</button>
-    <br>
-    <button>0</button>
-</div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      h1 {
+        text-align: center;
+      }
+      #main {
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        border: 1px solid white;
+        height: 350px;
+        width: 350px;
+        margin: auto;
+      }
+      #main1 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
 
-<div class="divoperator">
-    <button>+</button>
-    <button>-</button>
-    <button>*</button>
-    
-    <button>/</button>
-</div>
-
-<button id="equal">=</button>
-<button id="reset">reset</button>
-</body>
-
-<script>
-    let display = document.getElementById("display");
-    let button = document.querySelectorAll(".divbutton>button")
-    let operatorbutton = document.querySelectorAll(".divoperator>button")
-    let equal = document.getElementById("equal")
-    let reset = document.getElementById("reset")
-    let firstnumber=""
-    let secondnumber=""
-    let operator=""
-    let flag=true
-
-    for(let i=0;i<button.length;i++){
-        button[i].addEventListener("click",function(){
-            if(flag==true){
-        firstnumber+=button[i].innerText
-        display.innerText=firstnumber
+      #main > #main1 {
+        /* border:2px solid black ; */
+        height: 50px;
+        width: 250px;
+        margin: auto;
+        margin-top: 35px;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+      }
+      #main2 {
+        /* border: 2px solid red; */
         
-       }
-       else{
-        secondnumber+=button[i].innerText
-        display.innerText=secondnumber
-       }
-        })
-       
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: repeat(4, 1fr);
+        gap: 5px;
+        margin-top: 15px;
+        margin-left: 20px;
+        margin-right: 20px;
+      }
+      #main2 > div {
+        /* border: 1px solid black; */
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        height: 45px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 7px;
+      }
+      #main2 > div:nth-child(13) {
+        background-color: red;
+        color: white;
+        font-weight: bold;
+      }
+      #main2 > div:nth-child(4),
+      #main2 > div:nth-child(8),
+      #main2 > div:nth-child(12),
+      #main2 > div:nth-child(15),
+      #main2 > div:nth-child(16) {
+        background-color: black;
+        color: white;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Masai Calculator</h1>
+    <div id="main">
+      <div id="main1"></div>
+      <div id="main2">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>+</div>
+        <div>4</div>
+        <div>5</div>
+        <div>6</div>
+        <div>-</div>
+        <div>7</div>
+        <div>8</div>
+        <div>9</div>
+        <div>*</div>
+        <div>c</div>
+        <div>0</div>
+        <div>=</div>
+        <div>/</div>
+      </div>
+    </div>
+  </body>
+
+  <script>
+    let divbutton = document.querySelectorAll("#main2>div");
+    let display = document.getElementById("main1");
+    for (let i = 0; i < divbutton.length; i++) {
+      divbutton[i].addEventListener("click", calc);
     }
-
-    for(let i=0;i<operatorbutton.length;i++){
-        operatorbutton[i].addEventListener('click', function () {
-            
-            operator=operatorbutton[i].innerText
-            display.innerText=operator
-            flag=false
-        })
+    let res = "";
+    function calc(event) {
+      let output = event.target.innerText;
+      if (output == "c") {
+        res = "";
+        display.innerText = res;
+      } else if (output == "=") {
+        display.innerText = eval(res);
+      } else {
+        res += output;
+        display.innerText = res;
+      }
     }
-
-    // equal.addEventListener("click",fun)
-    // function fun(){
-    //    display.innerText=eval(firstnumber+operator+secondnumber) 
-    // }
-    equal.addEventListener("click",function(){
-        display.innerText=fun(firstnumber,operator,secondnumber)
-    })
-    function fun(firstnumber,operator,secondnumber){
-        if (operator=="+"){
-            return Number(firstnumber) + Number(secondnumber)
-        }
-        else  if (operator == "-"){
-            return Number(firstnumber) - Number(secondnumber)
-
-            }else   if (operator == "*"){
-                return Number(firstnumber) * Number(secondnumber)
-
-                }    else     if (operator == "/"){
-                    return Number(firstnumber) / Number(secondnumber)
-
-                }
-                
-    }
-  reset.addEventListener("click",function(){
-    display.innerText=" "
-  })
-
-
-</script>
+  </script>
 </html>
